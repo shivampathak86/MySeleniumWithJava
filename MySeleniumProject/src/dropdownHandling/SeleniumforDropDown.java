@@ -12,7 +12,9 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import  framework.*;
 
@@ -65,13 +67,15 @@ public  static void TearDownTests()
 	 
 	 var passengerDropDownBox = m_Driver.findElement(By.xpath("//div[@id='divpaxOptions']"));
 	 
-	 Thread.sleep(2000);
+	 var wait = new WebDriverWait(m_Driver,4);
+	  var addingAdults = wait.until(ExpectedConditions.visibilityOf(passengerDropDownBox.findElement(By.xpath("//div[@id='divAdult']/div[2]/span[3]"))));
 	 int i =1;
 	 
 	 while(i>=0)
 	 {
 	 
-	 passengerDropDownBox.findElement(By.xpath("//div[@id='divAdult']/div[2]/span[3]")).click();
+		 //passengerDropDownBox.findElement(By.xpath("//div[@id='divAdult']/div[2]/span[3]")).click();
+		 addingAdults.click();
 	 i--;
 	 }
 	 
@@ -100,9 +104,10 @@ public  static void TearDownTests()
 	 
 	 var getDesitnationBox = m_Driver.findElement(By.xpath("//*[@id='glsctl00_mainContent_ddl_originStation1_CTNR']"));
 	 
-	 Thread.sleep(2000);
-
-	 var chennai = getDesitnationBox.findElement(By.xpath("//a[@value='MAA']"));
+	 var wait = new WebDriverWait(m_Driver,4);
+	 var chennai = wait.until(ExpectedConditions.visibilityOf(getDesitnationBox.findElement(By.xpath("//a[@value='MAA']"))));
+	 
+	 //var chennai = getDesitnationBox.findElement(By.xpath("//a[@value='MAA']"));
 	 chennai.click();
 	 var selectedValue = "MAA";
 	 
@@ -115,9 +120,9 @@ public  static void TearDownTests()
 	 
 	 var getToDesitnationBox = m_Driver.findElement(By.xpath("//*[@id='glsctl00_mainContent_ddl_destinationStation1_CTNR']"));
 	 
-	 Thread.sleep(2000);
+	
 
-	 var brl = getToDesitnationBox.findElement(By.cssSelector("[value='BLR']"));
+	 var brl  = wait.until(ExpectedConditions.visibilityOf(getToDesitnationBox.findElement(By.cssSelector("[value='BLR']"))));
 	 brl.click();
 	 var selectedToValue = "BLR";
 	
@@ -137,9 +142,9 @@ public  static void TearDownTests()
 	 var countryDropDown = m_Driver.findElement(By.xpath("//*[@id ='autosuggest']"));
 	 countryDropDown.sendKeys("ind");
 	 
-	 Thread.sleep(2000);
+	 var wait = new WebDriverWait(m_Driver,10);
 	 
-	List<WebElement> autoSuggestedLIst = m_Driver.findElements(By.xpath("//li[@class ='ui-menu-item']"));
+	List<WebElement> autoSuggestedLIst = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//li[@class ='ui-menu-item']")));
 	
 	for( WebElement  country : autoSuggestedLIst)
 	{

@@ -1,6 +1,5 @@
 package framework;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -17,6 +16,7 @@ public class WebDriverBase
 	   
         WebDriver driver  = new ChromeDriver();
         driver.manage().window().maximize();
+        driver.get("https://rahulshettyacademy.com/dropdownsPractise/");
         return driver;
 //	driver.get("https://login.salesforce.com/");
 //	driver.manage().window().maximize();
