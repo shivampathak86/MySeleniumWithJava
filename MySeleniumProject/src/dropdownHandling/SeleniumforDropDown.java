@@ -2,6 +2,7 @@
 
 package dropdownHandling;
 
+import java.net.MalformedURLException;
 import java.util.List;
 
 import org.junit.AfterClass;
@@ -26,7 +27,7 @@ public class SeleniumforDropDown {
 	
 @BeforeClass
 
-public static void InitiTests()
+public static void InitiTests() throws MalformedURLException
 {
 	
 	WebDriverBase driver = new WebDriverBase();

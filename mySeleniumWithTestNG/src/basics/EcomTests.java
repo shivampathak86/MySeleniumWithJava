@@ -4,26 +4,12 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static org.testng.Assert.expectThrows;
-
-import java.time.Duration;
-import java.util.Collections;
-import java.util.Iterator;
+import java.net.MalformedURLException;
 import java.util.List;
-import java.util.Set;
-import java.util.function.Function;
-
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -36,10 +22,10 @@ public class EcomTests {
 	private List<String> nameOfVeggiesAddedInCart;
 
 	@BeforeClass
-	public static void OneTimeSetupTest() {
+	public static void OneTimeSetupTest() throws MalformedURLException {
 		WebDriverBase d = new WebDriverBase();
 		driver = d.getDriver();
-		wait = new WebDriverWait(driver,5);
+		wait = new WebDriverWait(driver, 5);
 		driver.get("https://rahulshettyacademy.com/seleniumPractise/#/");
 
 	}
@@ -76,62 +62,9 @@ public class EcomTests {
 		Assert.assertEquals(cartItems.size(), veggies.length);
 
 	}
-	
-	public void AjxLoadingTestWithExplicitWait()
-	{
-		
-		driver.get("https://www.itgeared.com/demo/1506-ajax-loading.html");
-		driver.findElement(By.linkText("Click to load get data via Ajax!")).click();
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@id='modal']")));
-		var result = driver.findElement(By.id("results"));
-		Assert.assertTrue(result.isDisplayed());
-		
-	}
-	
-	public void AjxLoadingTestwithFluentWait()
-	{
-		driver.get("https://www.itgeared.com/demo/1506-ajax-loading.html");
-		driver.findElement(By.linkText("Click to load get data via Ajax!")).click();
 
-        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver).withTimeout(Duration.ofSeconds(5)).pollingEvery(Duration.ofSeconds(2)).ignoring(NoSuchElementException.class);
-        wait.until(new Function<WebDriver,Boolean>(){
-        	
-        	public Boolean apply(WebDriver driver) {
-        	 return	! driver.findElement(By.xpath("//div[@id='modal']")).isDisplayed();
-        	}		
-        	
-        });
-		var result = driver.findElement(By.id("results"));
-		Assert.assertTrue(result.isDisplayed());
-		
-	}
 	
-	public void WindowHandleTest() throws InterruptedException
-	{
-		String childWindowTitle= new String();
-		String parentdWindowTitle ;
-		driver.get("https://the-internet.herokuapp.com/windows");
-	 String  currentWindow = driver.getWindowHandle();
-	  driver.findElement(By.linkText("Click Here")).click();
-	  Set<String> windows = driver.getWindowHandles();
-	  
-	  Thread.sleep(5000);
-	  if(windows.iterator().hasNext())
-	  {
-		 // driver.switchTo().window(windows.iterator().next()).switchTo().window(windows.iterator().next());
-		  
-		  childWindowTitle = driver.findElement(By.cssSelector("div.example>h3")).getText();
-		  
-		  System.out.println(childWindowTitle);
-	  }
-	   driver.switchTo().window(currentWindow);
-	   parentdWindowTitle = driver.findElement(By.cssSelector("div.example>h3")).getText();
-	   System.out.println(parentdWindowTitle);
-	   
-	   Assert.assertEquals(parentdWindowTitle, "Opening a new window");
-	   Assert.assertEquals(childWindowTitle, "New Window");
-	   windows.clear();
-	    
-	  }
+	
+	
 
 }
