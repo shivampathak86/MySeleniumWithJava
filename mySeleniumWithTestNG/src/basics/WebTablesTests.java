@@ -5,6 +5,9 @@ import org.testng.annotations.Test;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -81,5 +84,30 @@ public class WebTablesTests extends WebTestBase {
 
 		Assert.assertTrue(selectedOriginDate.contains(day));
 	}
-
+ 
+	public void Given_WebTable_When_Sorting_Is_Applied_To_Column_Then_Column_Item_Is_Sorted() throws InterruptedException
+	{
+		driver.get("https://rahulshettyacademy.com/seleniumPractise/#/");
+		driver.findElement(By.xpath("//a[@href='#/offers']")).click();
+		
+		  //var windows =driver.getWindowHandles(); driver.switchTo().window(windows.iterator().next());
+		 
+	// List<WebElement> OfferListItems =	driver.findElements(By.tagName("td"));
+	 
+   // List<String>sortedListofDiscountedItem = OfferListItems.stream().map(s->s.getText()).sorted().collect(Collectors.toList());
+ Thread.sleep(5000);
+   var columns =  driver.findElements(By.tagName("th"));
+   columns.forEach(col->System.out.println(col.getText()));
+  List<WebElement> columnList = columns.stream().filter(col->col.getText().contains("Veg")).collect(Collectors.toList());
+  
+  columnList.forEach( col -> System.out.println(col.getText()));
+ columnList.forEach(col->col.click());
+  
+    /*
+     List<WebElement> OfferListItemsAfterClickingSort =	driver.findElements(By.tagName("td"));
+     
+    Assert.assertTrue(sortedListofDiscountedItem.equals(OfferListItemsAfterClickingSort));*/
+     
+     
+	}
 }
