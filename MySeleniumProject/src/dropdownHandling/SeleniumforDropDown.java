@@ -48,7 +48,7 @@ public  static void TearDownTests()
 
 	
  @Test
-	public void FirstTest()
+	public void StaticDropDownTest_With_Element_Having_Select_Tag()
  {	 			 
 		 var currencyDropDown = m_Driver.findElement(By.xpath("//*[@id='ctl00_mainContent_DropDownListCurrency']"));
 		  
@@ -62,7 +62,7 @@ public  static void TearDownTests()
 	}
  
  @Test
- public void SecondTest() throws InterruptedException
+ public void StaticDropDownTest_Where_Single_DropDownOption_Selected_Multiple_Times_Using_Loop() throws InterruptedException
  {
 	 m_Driver.findElement(By.cssSelector(".row1.adult-infant-child")).click();
 	 
@@ -74,8 +74,7 @@ public  static void TearDownTests()
 	 
 	 while(i>=0)
 	 {
-	 
-		 //passengerDropDownBox.findElement(By.xpath("//div[@id='divAdult']/div[2]/span[3]")).click();
+	
 		 addingAdults.click();
 	 i--;
 	 }
@@ -95,10 +94,9 @@ public  static void TearDownTests()
  
  @Test
  
- public void ThirdTest() throws InterruptedException
+ public void DropwDownTest_Where_DropDowOptions_AreDynamic_Clicking_On_DropDown_Gives_DynamicList() throws InterruptedException
  {
 
-	 // selecting from destination drop down
 	 
 	 var fromDestionation = m_Driver.findElement(By.xpath("//*[@id='ctl00_mainContent_ddl_originStation1_CTXT']"));
 	 fromDestionation.click();
@@ -135,7 +133,7 @@ public  static void TearDownTests()
  
  @Test
  
- public void FourthTest() throws InterruptedException
+ public void AutoSuggestedDropDownTest() throws InterruptedException
  { 
 	 
 	 String selectedCountry = "India";
@@ -155,7 +153,7 @@ public  static void TearDownTests()
 			break;
 			
 		}
-		
+
 	}
 	
 	Thread.sleep(2000);
