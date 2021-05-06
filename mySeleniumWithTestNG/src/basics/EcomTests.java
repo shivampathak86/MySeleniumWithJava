@@ -4,6 +4,9 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
+import Helpers.WebTestBase;
+
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -13,19 +16,16 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import framework.WebDriverBase;
 
 @Test
-public class EcomTests {
+public class EcomTests extends WebTestBase {
 	public static WebDriver driver;
 	private static WebDriverWait wait;
 	private List<String> nameOfVeggiesAddedInCart;
 
 	@BeforeClass
 	public static void OneTimeSetupTest() throws MalformedURLException {
-		WebDriverBase d = new WebDriverBase();
-		driver = d.getDriver();
-		wait = new WebDriverWait(driver, 5);
+		
 		driver.get("https://rahulshettyacademy.com/seleniumPractise/#/");
 
 	}
@@ -62,9 +62,5 @@ public class EcomTests {
 		Assert.assertEquals(cartItems.size(), veggies.length);
 
 	}
-
-	
-	
-	
 
 }

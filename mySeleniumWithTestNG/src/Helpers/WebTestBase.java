@@ -1,13 +1,14 @@
-package basics;
+package Helpers;
 
 import java.net.MalformedURLException;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-
-import framework.WebDriverBase;
 
 public class WebTestBase {
 
@@ -16,10 +17,11 @@ public class WebTestBase {
 
 	@BeforeClass
 	public static void OneTimeSetupTest() throws MalformedURLException {
-		WebDriverBase d = new WebDriverBase();
-		driver = d.getDriver();
+
+		driver = new ChromeDriver();
+		driver.manage().window().maximize();
 		wait = new WebDriverWait(driver, 15);
-	
+
 	}
 
 	@AfterClass
@@ -28,7 +30,7 @@ public class WebTestBase {
 	}
 
 	public WebTestBase() {
-		super();
+
 	}
 
 }
